@@ -66,15 +66,18 @@ class UI {
   static silmeİşlemi(e) {
     if (e.target.className == "sil") {
       e.target.parentElement.parentElement.remove();
+      UI.onayMesaj2();
     }
-    UI.onayMesaj2();
   }
-  static hepsiniSilmeİşlemi(){
-      const trlist = document.querySelectorAll(".trlist")
-      trlist.forEach(e => {
-          e.remove();
-      })
-
+  static hepsiniSilmeİşlemi(e) {
+    const trlist = document.querySelectorAll(".trlist");
+    if (e.target.className == "hepsinisil") {
+      console.log(e.target);
+      trlist.forEach((e) => {
+        e.remove();
+      });
+      UI.onayMesaj2();
+    }
   }
 }
 //*************************************** */
@@ -84,7 +87,7 @@ tümEventler();
 function tümEventler() {
   form.addEventListener("submit", kitapEkle);
   tableList.addEventListener("click", tektekSil);
-  tableList.addEventListener("click",hepsiniSilme)
+  tableList.addEventListener("click", hepsiniSilme);
 }
 
 function kitapEkle(e) {
@@ -105,14 +108,9 @@ function kitapEkle(e) {
 }
 
 function tektekSil(e) {
-    UI.silmeİşlemi(e);
-    
-
+  UI.silmeİşlemi(e);
 }
 
-function hepsiniSilme(e){
-    if(e.target.className == "hepsinisil"){
-        UI.hepsiniSilmeİşlemi();
-        
-    }
+function hepsiniSilme(e) {
+  UI.hepsiniSilmeİşlemi(e);
 }
